@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # LearningNavigator : A Personalized Learning Dashboard for Students
 
 DASHBOARD FRONTEND :
@@ -14,4 +15,6 @@ Group members : BOUAROUR Killian, FODOUOP Lucrece, GAUDEAUX Louis
 
 
 
+
+=======
 
