@@ -14,10 +14,9 @@ class _DashboardState extends State<Dashboard> {
   @override
   void initState() {
     super.initState();
-    loadCSVData(); // Appel de la méthode pour charger les données CSV au démarrage
+    loadCSVData();
   }
 
-  // Méthode pour charger les données CSV à partir du fichier
   void loadCSVData() async {
     try {
       final rawData = await rootBundle.loadString('assets/bdd/notes.csv');
@@ -37,36 +36,64 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        leading: IconButton(
+          icon: Icon(Icons.menu, color: Colors.white),
+          onPressed: () {
+            // Action à exécuter lorsque le bouton est pressé
+          },
+        ),
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xCC8B4513), Color(0x46250D)], // Marron foncé à partir de #8B4513
+            colors: [
+              Colors.lightBlue.shade300,
+              Colors.indigo.shade200,
+              Colors.yellow.shade100
+            ],
           ),
         ),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: isLoading
-              ? Center(child: CircularProgressIndicator())
-              : csvData.isNotEmpty && csvData.length > 1
-              ? DataTable(
-            columns: csvData[0].map((item) => DataColumn(
-              label: Text(
-                item.toString(),
-              ),
-            )).toList(),
-            rows: csvData.sublist(1).map((csvrow) => DataRow(
-              cells: csvrow.map((csvItem) => DataCell(
-                Text(
-                  csvItem.toString(),
-                ),
-              )).toList(),
-            )).toList(),
-          )
-              : Center(
-            child: Text('Aucune donnée à afficher'),
-          ),
+        // L'affichage du fichier CSV est retiré d'ici
+      ),
+      floatingActionButton: Tooltip(
+        message: 'Afficher les notes',
+        child: FloatingActionButton(
+          onPressed: () {
+            // Afficher les notes lorsque le bouton flottant est pressé
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Notes'),
+                  content: Container(
+                    width: double.maxFinite,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: csvData.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                          title: Text(csvData[index].toString()),
+                        );
+                      },
+                    ),
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('Fermer'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: Icon(Icons.notes),
         ),
       ),
     );
