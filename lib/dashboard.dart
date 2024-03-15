@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
+import 'notes.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -67,29 +68,7 @@ class _DashboardState extends State<Dashboard> {
             showDialog(
               context: context,
               builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text('Notes'),
-                  content: Container(
-                    width: double.maxFinite,
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: csvData.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ListTile(
-                          title: Text(csvData[index].toString()),
-                        );
-                      },
-                    ),
-                  ),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text('Fermer'),
-                    ),
-                  ],
-                );
+                return NotesDialog(csvData: csvData);
               },
             );
           },
@@ -99,3 +78,4 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 }
+
