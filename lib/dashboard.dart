@@ -75,6 +75,7 @@ class _DashboardState extends State<Dashboard> {
           child: Icon(Icons.notes),
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
     );
   }
 }
