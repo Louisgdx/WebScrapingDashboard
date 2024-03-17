@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
-class WidgetMoyenneGen extends StatefulWidget {
+class WidgetEdt extends StatefulWidget {
   @override
-  _WidgetMoyenneGenState createState() => _WidgetMoyenneGenState();
+  _WidgetEdtState createState() => _WidgetEdtState();
 }
 
-class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
+class _WidgetEdtState extends State<WidgetEdt> {
   bool isHovered = false;
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 60.0, // Position verticale du widget
-      left: 200.0, // Position horizontale du widget
+      top: 200.0, // Position verticale du widget
+      left: 950.0, // Position horizontale du widget
       child: MouseRegion(
         onEnter: (event) {
           setState(() {
@@ -28,8 +28,8 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
         child: AnimatedContainer(
           duration: Duration(milliseconds: 200),
           curve: Curves.easeInOut,
-          width: isHovered ? 570.0 : 560.0, // Largeur du widget gonflé
-          height: isHovered ? 130.0 : 120.0, // Hauteur du widget gonflé
+          width: isHovered ? 260.0 : 250.0, // Largeur du widget gonflé
+          height: isHovered ? 370.0 : 360.0, // Hauteur du widget gonflé
           decoration: BoxDecoration(
             color: AppColors().bleuClair.withOpacity(0.8), // Couleur de fond semi-transparente
             borderRadius: BorderRadius.circular(10.0), // Coins arrondis
@@ -38,7 +38,7 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                 color: Colors.black.withOpacity(0.1), // Couleur de l'ombre (effet de reflet)
                 spreadRadius: -2, // Étendue de l'ombre (vers l'intérieur)
                 blurRadius: 6, // Flou de l'ombre
-                offset: Offset(0, 4), // Décalage de l'ombre (vers le bas)
+                offset: Offset(0, 3), // Décalage de l'ombre (vers le bas)
               ),
             ],
           ),
