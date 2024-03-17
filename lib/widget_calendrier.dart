@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
-class WidgetMoyenneGen extends StatefulWidget {
+class WidgetCalendrier extends StatefulWidget {
   @override
-  _WidgetMoyenneGenState createState() => _WidgetMoyenneGenState();
+  _WidgetCalendrierState createState() => _WidgetCalendrierState();
 }
 
-class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
+class _WidgetCalendrierState extends State<WidgetCalendrier> {
   bool isHovered = false;
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
       top: 60.0, // Position verticale du widget
-      left: 200.0, // Position horizontale du widget
+      left: 800.0, // Position horizontale du widget
       child: MouseRegion(
         onEnter: (event) {
           setState(() {
@@ -28,7 +28,7 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
         child: AnimatedContainer(
           duration: Duration(milliseconds: 200),
           curve: Curves.easeInOut,
-          width: isHovered ? 520.0 : 500.0, // Largeur du widget gonflé
+          width: isHovered ? 420.0 : 400.0, // Largeur du widget gonflé
           height: isHovered ? 140.0 : 120.0, // Hauteur du widget gonflé
           decoration: BoxDecoration(
             color: AppColors().bleuClair.withOpacity(0.8), // Couleur de fond semi-transparente
@@ -38,7 +38,7 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                 color: Colors.black.withOpacity(0.1), // Couleur de l'ombre (effet de reflet)
                 spreadRadius: -2, // Étendue de l'ombre (vers l'intérieur)
                 blurRadius: 6, // Flou de l'ombre
-                offset: Offset(0, 4), // Décalage de l'ombre (vers le bas)
+                offset: Offset(0, 3), // Décalage de l'ombre (vers le bas)
               ),
             ],
           ),
