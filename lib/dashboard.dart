@@ -3,6 +3,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
 import 'notes.dart';
 import 'marge_gauche.dart'; // Importez le fichier contenant le widget MargeGauche
+import 'marge_haut.dart'; // Importez le fichier contenant le widget MargeHaut
 
 class Dashboard extends StatefulWidget {
   @override
@@ -61,6 +62,7 @@ class _DashboardState extends State<Dashboard> {
           MargeGauche(
             child: SizedBox(),
           ),
+          MargeHaut(),
           Positioned(
             top: 0,
             right: 16,
