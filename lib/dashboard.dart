@@ -37,14 +37,11 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true, // Pour étendre le corps derrière la barre d'applications
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.white),
-          onPressed: () {
-            // Action à exécuter lorsque le bouton est pressé
-          },
-        ),
+        backgroundColor: Colors.transparent, // Rend la barre d'applications transparente
+        elevation: 0, // Supprime l'ombre de la barre d'applications
+
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
