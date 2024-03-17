@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
 import 'notes.dart';
+import 'marge_gauche.dart'; // Importez le fichier contenant le widget MargeGauche
 
 class Dashboard extends StatefulWidget {
   @override
@@ -37,43 +38,47 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true, // Pour étendre le corps derrière la barre d'applications
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.transparent, // Rend la barre d'applications transparente
-        elevation: 0, // Supprime l'ombre de la barre d'applications
-
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.lightBlue.shade300,
-              Colors.indigo.shade200,
-              Colors.yellow.shade100
-            ],
+      body: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.lightBlue.shade300,
+                  Colors.indigo.shade200,
+                  Colors.yellow.shade100
+                ],
+              ),
+            ),
           ),
-        ),
-        // L'affichage du fichier CSV est retiré d'ici
-      ),
-      floatingActionButton: Tooltip(
-        message: 'Afficher les notes',
-        child: FloatingActionButton(
-          onPressed: () {
-            // Afficher les notes lorsque le bouton flottant est pressé
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return NotesDialog(csvData: csvData);
+          MargeGauche(
+            child: SizedBox(),
+          ),
+          Positioned(
+            top: 0,
+            right: 16,
+            child: FloatingActionButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return NotesDialog(csvData: csvData);
+                  },
+                );
               },
-            );
-          },
-          child: Icon(Icons.notes),
-        ),
+              tooltip: 'Afficher les notes',
+              child: Icon(Icons.notes),
+            ),
+          ),
+        ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
     );
   }
 }
-
