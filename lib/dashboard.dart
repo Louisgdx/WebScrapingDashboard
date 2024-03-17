@@ -6,6 +6,7 @@ import 'notes.dart';
 import 'marge_gauche.dart';
 import 'entete.dart';
 import 'widget_calendrier.dart';
+import 'widget_edt.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -67,6 +68,7 @@ class _DashboardState extends State<Dashboard> {
           Entete(),
           WidgetMoyenneGen(),
           WidgetCalendrier(),
+          WidgetEdt(),
           Positioned(
             top: 0,
             right: 16,
