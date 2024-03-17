@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
-class MargeHaut extends StatelessWidget {
+class Entete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
