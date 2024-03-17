@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
 import 'notes.dart';
-import 'marge_gauche.dart'; // Importez le fichier contenant le widget MargeGauche
-import 'entete.dart'; // Importez le fichier contenant le widget MargeHaut
+import 'marge_gauche.dart';
+import 'entete.dart';
+import 'widget_calendrier.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -65,6 +66,7 @@ class _DashboardState extends State<Dashboard> {
           ),
           Entete(),
           WidgetMoyenneGen(),
+          WidgetCalendrier(),
           Positioned(
             top: 0,
             right: 16,
