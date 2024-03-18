@@ -9,7 +9,7 @@ class MargeGauche extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 160, // Largeur de la marge gauche
+      width: 180, // Largeur de la marge gauche
       height: MediaQuery.of(context).size.height,
       padding: EdgeInsets.all(18.0), // Ajout de padding pour espacement interne
       decoration: BoxDecoration(
