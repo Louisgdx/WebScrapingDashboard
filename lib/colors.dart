@@ -9,6 +9,7 @@ class AppColors {
   final bleuClair = Colors.blue.shade100;
   final grisFonce = Colors.grey.shade800;
   final bleuFonce = Colors.lightBlue.shade400 ;
+  final violetClair = Colors.indigo.shade100 ;
 }
 
 

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
-class WidgetMatieres extends StatefulWidget {
+class WidgetAutre extends StatefulWidget {
   @override
-  _WidgetMatieresState createState() => _WidgetMatieresState();
+  _WidgetAutreState createState() => _WidgetAutreState();
 }
 
-class _WidgetMatieresState extends State<WidgetMatieres> {
+class _WidgetAutreState extends State<WidgetAutre> {
   bool isHovered = false;
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
       top: 200.0, // Position verticale du widget
-      left: 220.0, // Position horizontale du widget
+      left: 520.0, // Position horizontale du widget
       child: MouseRegion(
         onEnter: (event) {
           setState(() {
