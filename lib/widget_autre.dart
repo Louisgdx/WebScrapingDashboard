@@ -11,9 +11,13 @@ class _WidgetAutreState extends State<WidgetAutre> {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 200.0, // Position verticale du widget
-      left: 520.0, // Position horizontale du widget
+    return Container(
+      margin: EdgeInsets.only(
+        top: 200.0, // Position verticale du widget
+        left: 520.0, // Position horizontale du widget
+      ),
+      width: 200.0, // Largeur du widget
+      height: 190.0, // Hauteur du widget
       child: MouseRegion(
         onEnter: (event) {
           setState(() {
