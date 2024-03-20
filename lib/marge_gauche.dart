@@ -15,7 +15,7 @@ class MargeGauche extends StatelessWidget {
           left: 0,
           top: MediaQuery.of(context).size.height / 2 - 200, // Position verticale centrée
           child: Container(
-            width: 60,
+            width: 60, // Ajustement de la largeur du conteneur
             height: 400,
             decoration: BoxDecoration(
               color: AppColors().bleuClair,
@@ -23,6 +23,42 @@ class MargeGauche extends StatelessWidget {
                 topRight: Radius.circular(12),
                 bottomRight: Radius.circular(12),
               ),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Bouton Messages
+                Tooltip(
+                  message: 'Messages',
+                  child: IconButton(
+                    icon: Icon(Icons.message),
+                    onPressed: () {
+                      // Action lors de l'appui sur le bouton Messages
+                    },
+                  ),
+                ),
+                // Icône flèche retour en arrière
+                Tooltip(
+                  message: 'Consulté Récemment',
+                  child: IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () {
+                      // Action lors de l'appui sur l'icône de retour
+                    },
+                  ),
+                ),
+                // Icône point d'interrogation
+                Tooltip(
+                  message: 'Aide',
+                  child: IconButton(
+                    icon: Icon(Icons.help_outline),
+                    onPressed: () {
+                      // Action lors de l'appui sur l'icône d'aide
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ),
