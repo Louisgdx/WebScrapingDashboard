@@ -1,47 +1,18 @@
-import 'package:dashboard_bouarour_fodouop_gaudeaux/widget_moyenne_gen.dart';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
-import 'notes.dart';
 import 'marge_gauche.dart';
 import 'entete.dart';
 import 'widget_calendrier.dart';
 import 'widget_edt.dart';
 import 'widget_matieres.dart';
-import 'widget_autre.dart' ;
+import 'widget_autre.dart';
+import 'widget_moyenne_gen.dart';
+import 'colors.dart';
 
-
-class Dashboard extends StatefulWidget {
-  @override
-  _DashboardState createState() => _DashboardState();
-}
-
-class _DashboardState extends State<Dashboard> {
-  List<List<dynamic>> csvData = [];
-  bool isLoading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    loadCSVData();
-  }
-
-  void loadCSVData() async {
-    try {
-      final rawData = await rootBundle.loadString('assets/bdd/notes.csv');
-      List<List<dynamic>> data = CsvToListConverter(eol: ';').convert(rawData);
-      setState(() {
-        csvData = data;
-        isLoading = false;
-      });
-    } catch (e) {
-      print('Erreur lors du chargement du fichier CSV: $e');
-      setState(() {
-        isLoading = false;
-      });
-    }
-  }
-
+class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,42 +27,32 @@ class _DashboardState extends State<Dashboard> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.lightBlue.shade300,
-                  Colors.indigo.shade200,
-                  Colors.yellow.shade100
-                ],
+              gradient: AppColors().gradient,
+            ),
+          ),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+              child: Container(
+                color: Colors.transparent, // La couleur d'arrière-plan
+                child: Opacity(
+                  opacity: 0.3, // Ajustez l'opacité de l'image
+                  child: Image.asset('assets/photo_dash2.jpg', fit: BoxFit.cover),
+                ),
               ),
             ),
           ),
-          MargeGauche(
-            child: SizedBox(),
-          ),
           Entete(),
+          WidgetMatieres(),
           WidgetMoyenneGen(),
+          WidgetAutre(),
           WidgetCalendrier(),
           WidgetEdt(),
-          WidgetMatieres(),
-          WidgetAutre(),
-          Positioned(
-            top: 0,
-            right: 16,
-            child: FloatingActionButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return NotesDialog(csvData: csvData);
-                  },
-                );
-              },
-              tooltip: 'Afficher les notes',
-              child: Icon(Icons.notes),
-            ),
-          ),
+          MargeGauche(),
         ],
       ),
     );
   }
 }
+
+
