@@ -8,37 +8,41 @@ class MargeGauche extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 180,
-      height: MediaQuery.of(context).size.height,
-      padding: EdgeInsets.all(18.0),
-      decoration: BoxDecoration(
-        color: AppColors().bleuClair,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.5),
-            blurRadius: 4,
-            offset: Offset(0, -3),
+    return Stack(
+      children: [
+        // Widget rectangulaire à gauche
+        Positioned(
+          left: 0,
+          top: MediaQuery.of(context).size.height / 2 - 200, // Position verticale centrée
+          child: Container(
+            width: 50,
+            height: 400,
+            decoration: BoxDecoration(
+              color: AppColors().bleuClair,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(12),
+                bottomRight: Radius.circular(12),
+              ),
+            ),
           ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
+        ),
+        // Texte au-dessus à droite
+        Positioned(
+          left: 12,
+          top: 15,
+          child: Text(
             'Learning Navigator',
             style: TextStyle(
               color: AppColors().grisFonce,
               fontWeight: FontWeight.bold,
-              fontSize: 12.0,
+              fontSize: 16.0,
               fontFamily: 'Regular',
             ),
           ),
-          SizedBox(height: 16.0),
-          if (child != null) Expanded(child: child!),
-        ],
-      ),
+        ),
+        // Contenu fourni
+        if (child != null) Positioned.fill(child: child!),
+      ],
     );
   }
 }
-
