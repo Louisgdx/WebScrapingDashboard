@@ -1,3 +1,5 @@
+
+/*
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
@@ -16,8 +18,8 @@ class _WidgetCalendrierState extends State<WidgetCalendrier> {
     return Expanded(
       child: Container(
         margin: EdgeInsets.only(
-          top: 60.0, // Position verticale du widget
-          left: 800.0, // Position horizontale du widget
+          top: 150.0, // Position verticale du widget
+          left: 100.0, // Position horizontale du widget
         ),
         child: MouseRegion(
           onEnter: (event) {
@@ -33,7 +35,7 @@ class _WidgetCalendrierState extends State<WidgetCalendrier> {
           child: AnimatedContainer(
             duration: Duration(milliseconds: 200),
             curve: Curves.easeInOut,
-            width: isHovered ? 410.0 : 400.0, // Largeur du widget gonflé
+            width: isHovered ? 380.0 : 370.0, // Largeur du widget gonflé
             height: isHovered ? 130.0 : 120.0, // Hauteur du widget gonflé
             decoration: BoxDecoration(
               color: AppColors().bleuClair.withOpacity(0.8), // Couleur de fond semi-transparente
@@ -54,3 +56,4 @@ class _WidgetCalendrierState extends State<WidgetCalendrier> {
     );
   }
 }
+*/

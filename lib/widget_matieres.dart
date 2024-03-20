@@ -14,8 +14,8 @@ class _WidgetMatieresState extends State<WidgetMatieres> {
     return Expanded(
       child: Container(
         margin: EdgeInsets.only(
-          top: 200.0, // Position verticale du widget
-          left: 220.0, // Position horizontale du widget
+          top: 47.0, // Position verticale du widget
+          left: 640.0, // Position horizontale du widget
         ),
         child: MouseRegion(
           onEnter: (event) {
@@ -31,8 +31,8 @@ class _WidgetMatieresState extends State<WidgetMatieres> {
           child: AnimatedContainer(
             duration: Duration(milliseconds: 200),
             curve: Curves.easeInOut,
-            width: isHovered ? 210.0 : 200.0, // Largeur du widget gonflé
-            height: isHovered ? 190.0 : 180.0, // Hauteur du widget gonflé
+            width: isHovered ? 240.0 : 230.0, // Largeur du widget gonflé
+            height: isHovered ? 220.0 : 210.0, // Hauteur du widget gonflé
             decoration: BoxDecoration(
               color: AppColors().bleuClair.withOpacity(0.8), // Couleur de fond semi-transparente
               borderRadius: BorderRadius.circular(10.0), // Coins arrondis
