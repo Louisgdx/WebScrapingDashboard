@@ -28,6 +28,23 @@ class MargeGauche extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                // Icône Home entourée d'un cercle blanc
+                Tooltip(
+                  message: 'Tableau de bord', // Message du Tooltip
+                  child: Container(
+                    padding: EdgeInsets.all(6), // Marge intérieure pour le cercle
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle, // Forme circulaire
+                      color: Colors.white, // Couleur de fond blanche
+                    ),
+                    child: Icon(
+                      Icons.home,
+                      color: AppColors().grisFonce,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10), // Espacement entre l'icône et le texte
+
                 // Bouton Messages
                 Tooltip(
                   message: 'Messages',
