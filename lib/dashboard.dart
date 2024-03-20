@@ -46,7 +46,6 @@ class Dashboard extends StatelessWidget {
           WidgetMatieres(),
           WidgetMoyenneGen(),
           WidgetAutre(),
-          WidgetCalendrier(),
           WidgetEdt(),
           MargeGauche(),
         ],

@@ -15,7 +15,7 @@ class MargeGauche extends StatelessWidget {
           left: 0,
           top: MediaQuery.of(context).size.height / 2 - 200, // Position verticale centrée
           child: Container(
-            width: 50,
+            width: 60,
             height: 400,
             decoration: BoxDecoration(
               color: AppColors().bleuClair,
@@ -29,13 +29,13 @@ class MargeGauche extends StatelessWidget {
         // Texte au-dessus à droite
         Positioned(
           left: 12,
-          top: 15,
+          top: 10,
           child: Text(
             'Learning Navigator',
             style: TextStyle(
               color: AppColors().grisFonce,
               fontWeight: FontWeight.bold,
-              fontSize: 16.0,
+              fontSize: 15.0,
               fontFamily: 'Regular',
             ),
           ),
