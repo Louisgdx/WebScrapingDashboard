@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'colors.dart';
 
+
+// partie du haut du dashboard pour afficher l'icone parametres, notification et la photo de profil
+
 class Entete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
