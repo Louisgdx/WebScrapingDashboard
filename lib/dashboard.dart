@@ -37,7 +37,7 @@ class Dashboard extends StatelessWidget {
                 color: Colors.transparent, // La couleur d'arrière-plan
                 child: Opacity(
                   opacity: 0.3, // Ajustez l'opacité de l'image
-                  child: Image.asset('assets/photo_dash2.jpg', fit: BoxFit.cover),
+                  child: Image.asset('assets/images/photo_dash2.jpg', fit: BoxFit.cover),
                 ),
               ),
             ),
