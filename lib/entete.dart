@@ -29,6 +29,7 @@ class Entete extends StatelessWidget {
           Row(
             children: [
               IconButton(
+                iconSize: 30.0,
                 onPressed: () {
                   // Action lorsque vous appuyez sur l'icône de paramètres
                 },
@@ -39,14 +40,47 @@ class Entete extends StatelessWidget {
                   width: 20.0,
                 ),
               ),
-              SizedBox(width: 16), // Espacement entre les icônes
+              SizedBox(width: 18), // Espacement entre les icônes
               IconButton(
+                iconSize: 30.0,
                 onPressed: () {
                   // Action lorsque vous appuyez sur l'icône de notification
                 },
                 icon: Icon(
                   Icons.notifications,
                   color: AppColors().grisFonce,
+                ),
+              ),
+              SizedBox(width: 16), // Espacement entre les icônes
+              Builder(
+                builder: (context) => IconButton(
+                  iconSize: 32.0, // Augmente la taille de l'icône
+                  icon: Icon(Icons.account_circle),
+                  color: AppColors().grisFonce,
+                  tooltip: 'Mon compte',
+                  // Ajout du menu au onPressed
+                  onPressed: () {
+                    showMenu(
+                      context: context,
+                      position: RelativeRect.fromLTRB(0, 50, 0, 0),
+                      items: [
+                        PopupMenuItem(
+                          child: Text('Mon Compte'),
+                          value: 'Mon Compte',
+                        ),
+                        PopupMenuItem(
+                          child: Text('Déconnexion'),
+                          value: 'Déconnexion',
+                        ),
+                      ],
+                    ).then((value) {
+                      if (value == 'Mon Compte') {
+                        // Action lorsque "Mon Compte" est sélectionné
+                      } else if (value == 'Déconnexion') {
+                        // Action lorsque "Déconnexion" est sélectionné
+                      }
+                    });
+                  },
                 ),
               ),
             ],
@@ -56,3 +90,4 @@ class Entete extends StatelessWidget {
     );
   }
 }
+
