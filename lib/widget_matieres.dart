@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
-import 'matieres.dart'; // Import de la classe Matieres pour afficher la fenêtre
+import 'matieres.dart';
 
 class WidgetMatieres extends StatefulWidget {
   final VoidCallback showDialogCallback;
