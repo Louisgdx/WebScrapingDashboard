@@ -138,7 +138,7 @@ class _MatieresState extends State<Matieres> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Résultats($matiere)'),
+          title: Text('Résultats ($matiere) '),
           content: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
