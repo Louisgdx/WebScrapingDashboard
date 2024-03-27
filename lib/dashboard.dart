@@ -52,7 +52,8 @@ class Dashboard extends StatelessWidget {
           WidgetAutre(), // Appel de la classe WidgetAutre pour afficher les autres widgets
           WidgetEdt(), // Appel de la classe WidgetEdt pour afficher l'emploi du temps
           MargeGauche(), // Appel de la classe MargeGauche pour afficher la marge gauche
-          Suivi(),
+          SuiviAbsences(),
+
         ],
       ),
     );

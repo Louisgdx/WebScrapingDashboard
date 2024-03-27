@@ -1,46 +1,48 @@
-import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 
-// Classe représentant les données de progression
-class Progression {
-  final String country;
-  final int population;
-  final charts.Color color;
 
-  Progression(this.country, this.population, this.color);
+// Classe représentant les données d'absence
+class AbsenceData {
+  final DateTime month;
+  final int absences;
+
+  AbsenceData(this.month, this.absences);
 }
 
-// Classe représentant le widget Suivi
-class Suivi extends StatelessWidget {
+// Classe représentant le widget Suivi des absences
+class SuiviAbsences extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Données de progression
+    // Données d'absence (à titre d'exemple)
     var data = [
-      Progression('USA', 3290, charts.Color.fromHex(code: '#FF0000')),
-      Progression('US', 429, charts.Color.fromHex(code: '#0000FF')),
-      Progression('SA', 39, charts.Color.fromHex(code: '#00FF00')),
-      Progression('Albanie', 329, charts.Color.fromHex(code: '#A52A2A')),
-      Progression('Blaise', 3209, charts.Color.fromHex(code: '#FFC0CB')),
-      Progression('USA', 3, charts.Color.fromHex(code: '#800080')),
+      AbsenceData(DateTime(2023, 1), 100),
+      AbsenceData(DateTime(2023, 2), 8),
+      AbsenceData(DateTime(2023, 3), 3),
+      AbsenceData(DateTime(2023, 4), 6),
+      AbsenceData(DateTime(2023, 5), 7),
+      AbsenceData(DateTime(2023, 6), 4),
     ];
 
     // Définir la série pour le graphique
     var series = [
-      charts.Series<Progression, String>(
-        domainFn: (Progression progression, _) => progression.country,
-        measureFn: (Progression progression, _) => progression.population,
-        colorFn: (Progression progression, _) => progression.color,
-        id: "Progression",
+      charts.Series<AbsenceData, DateTime>(
+        id: 'Absences',
+        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+        domainFn: (AbsenceData data, _) => data.month,
+        measureFn: (AbsenceData data, _) => data.absences,
         data: data,
       )
     ];
 
-    // Créer le graphique avec une échelle logarithmique pour l'axe des mesures
-    var chart = charts.BarChart(
-      animate: true,
+    // Créer le graphique avec un LineChart
+    var chart = charts.TimeSeriesChart(
       series,
-      defaultRenderer: charts.BarRendererConfig(),
+      animate: true,
+      dateTimeFactory: const charts.LocalDateTimeFactory(),
     );
 
     // Retourner le graphique enveloppé dans un conteneur avec les paramètres de positionnement

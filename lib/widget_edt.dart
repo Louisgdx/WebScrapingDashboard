@@ -44,11 +44,11 @@ class _WidgetEdtState extends State<WidgetEdt> {
                 width: isHovered ? 450.0 : 440.0,
                 height: isHovered ? 380.0 : 370.0,
                 decoration: BoxDecoration(
-                  color: AppColors().bleuClair.withOpacity(0.8),
+                  color: AppColors().bleuClair.withOpacity(0.9),
                   borderRadius: BorderRadius.circular(10.0),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
+                      color: AppColors().grisFonce.withOpacity(0.1),
                       spreadRadius: -2,
                       blurRadius: 6,
                       offset: Offset(0, 3),
