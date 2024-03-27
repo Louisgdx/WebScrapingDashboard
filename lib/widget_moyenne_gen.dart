@@ -55,11 +55,11 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                 width: isHovered ? 450.0 : 440.0, // Largeur du widget gonflé
                 height: isHovered ? 140.0 : 130.0, // Hauteur du widget gonflé
                 decoration: BoxDecoration(
-                  color: AppColors().bleuClair.withOpacity(0.8), // Couleur de fond semi-transparente
+                  color: AppColors().grisFonce.withOpacity(0.3), // Couleur de fond semi-transparente
                   borderRadius: BorderRadius.circular(10.0), // Coins arrondis
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.1), // Couleur de l'ombre (effet de reflet)
+                      color: AppColors().grisFonce.withOpacity(0.1), // Couleur de l'ombre (effet de reflet)
                       spreadRadius: -2, // Étendue de l'ombre (vers l'intérieur)
                       blurRadius: 6, // Flou de l'ombre
                       offset: Offset(0, 3), // Décalage de l'ombre (vers le bas)
@@ -69,14 +69,32 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                 // Vous pouvez ajouter d'autres widgets à l'intérieur de ce conteneur si nécessaire
               ),
               Positioned(
-                top: 20.0, // Position verticale du texte par rapport au haut du conteneur
-                right: 10.0, // Position horizontale du texte par rapport à la droite du conteneur
+                top: 10.0, // Position verticale du texte par rapport au haut du conteneur
+                left: 10.0, // Position horizontale du texte par rapport à la gauche du conteneur
+                child: ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return AppColors().gradient.createShader(bounds); // Utiliser le dégradé de la classe AppColors
+                  },
+                  child: Text(
+                    'Bienvenue Prénom !',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 50.0, // Position verticale du texte par rapport au haut du conteneur
+                left: 10.0, // Position horizontale du texte par rapport à la gauche du conteneur
                 child: AnimatedTextKit(
+                  repeatForever: true,
                   animatedTexts: [
                     RotateAnimatedText(
                       currentDate,
                       textStyle: TextStyle(
-                        color: AppColors().grisFonce, // Couleur du texte en noir
+                        color: Colors.white, // Couleur du texte
                         fontSize: 20.0, // Taille de la police
                         fontWeight: FontWeight.bold,
                       ),
@@ -84,7 +102,7 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                     RotateAnimatedText(
                       currentTime,
                       textStyle: TextStyle(
-                        color: AppColors().grisFonce, // Couleur du texte en noir
+                        color: Colors.white, // Couleur du texte
                         fontSize: 20.0, // Taille de la police
                         fontWeight: FontWeight.bold,
                       ),
@@ -95,23 +113,6 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                   },
                 ),
               ),
-              Positioned(
-                top: 5.0, // Position verticale du texte par rapport au haut du conteneur
-                left: 10.0, // Position horizontale du texte par rapport à la gauche du conteneur
-                child: ShaderMask(
-                  shaderCallback: (Rect bounds) {
-                    return AppColors().gradient.createShader(bounds); // Utiliser le dégradé de la classe AppColors
-                  },
-                  child: Text(
-                    'Bienvenue',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -119,4 +120,3 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
     );
   }
 }
-
