@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'colors.dart';
-import '/data/moy.dart';
+import 'colors.dart'; // Importer la classe AppColors
 
 class WidgetMoyenneGen extends StatefulWidget {
   @override
@@ -10,28 +9,22 @@ class WidgetMoyenneGen extends StatefulWidget {
 
 class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
   bool isHovered = false;
-  String currentDate = ''; // Stocker la date du jour
+  String currentDate = ''; // Stocker la date actuelle
   String currentTime = ''; // Stocker l'heure actuelle
 
   @override
   void initState() {
     super.initState();
     // Appeler les méthodes pour obtenir la date et l'heure lors de l'initialisation du widget
-    _getCurrentDate();
-    _getCurrentTime();
+    _getCurrentDateAndTime();
   }
 
-  // Méthode pour obtenir la date actuelle
-  void _getCurrentDate() {
+  // Méthode pour obtenir la date et l'heure actuelles
+  void _getCurrentDateAndTime() {
     setState(() {
-      currentDate = Moy.getCurrentDate(); // Utilisation de la méthode de la classe Moy pour obtenir la date
-    });
-  }
-
-  // Méthode pour obtenir l'heure actuelle
-  void _getCurrentTime() {
-    setState(() {
-      currentTime = Moy.getCurrentTime(); // Utilisation de la méthode de la classe Moy pour obtenir l'heure
+      // Ici, vous devez obtenir la date et l'heure actuelles
+      currentDate = "Mercredi 27 mars"; // Remplacer par la méthode réelle pour obtenir la date
+      currentTime = "14:30"; // Remplacer par la méthode réelle pour obtenir l'heure
     });
   }
 
@@ -76,38 +69,47 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                 // Vous pouvez ajouter d'autres widgets à l'intérieur de ce conteneur si nécessaire
               ),
               Positioned(
-                top: 0.0, // Position verticale du texte par rapport au haut du conteneur
-                left: 5.0, // Position horizontale du texte par rapport à la gauche du conteneur
-                child: Container(
-                  width: 250, // Largeur fixe pour le widget AnimatedTextKit
-                  height: 40, // Hauteur fixe pour le widget AnimatedTextKit
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      TypewriterAnimatedText(
-                        'Bonjour Prénom !',
-                        textAlign: TextAlign.center, // Centrer le texte
-                        textStyle: TextStyle(
-                          color: AppColors().grisFonce, // Couleur du texte en gris foncé
-                          fontSize: 20.0, // Taille de la police
-                          fontFamily: 'Regular',
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 10.0, // Position verticale du texte par rapport au haut du conteneur
+                top: 20.0, // Position verticale du texte par rapport au haut du conteneur
                 right: 10.0, // Position horizontale du texte par rapport à la droite du conteneur
                 child: AnimatedTextKit(
                   animatedTexts: [
-                    RotateAnimatedText(currentDate),
-                    RotateAnimatedText(currentTime),
+                    RotateAnimatedText(
+                      currentDate,
+                      textStyle: TextStyle(
+                        color: AppColors().grisFonce, // Couleur du texte en noir
+                        fontSize: 20.0, // Taille de la police
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    RotateAnimatedText(
+                      currentTime,
+                      textStyle: TextStyle(
+                        color: AppColors().grisFonce, // Couleur du texte en noir
+                        fontSize: 20.0, // Taille de la police
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ],
                   onTap: () {
                     print("Tap Event");
                   },
+                ),
+              ),
+              Positioned(
+                top: 5.0, // Position verticale du texte par rapport au haut du conteneur
+                left: 10.0, // Position horizontale du texte par rapport à la gauche du conteneur
+                child: ShaderMask(
+                  shaderCallback: (Rect bounds) {
+                    return AppColors().gradient.createShader(bounds); // Utiliser le dégradé de la classe AppColors
+                  },
+                  child: Text(
+                    'Bienvenue',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
             ],
