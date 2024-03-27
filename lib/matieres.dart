@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
@@ -12,21 +14,24 @@ class Matieres extends StatefulWidget {
 class _MatieresState extends State<Matieres> {
   final TextEditingController _searchController = TextEditingController();
   String _searchText = '';
-  late List<String> _matieres;
-  late List<double> _averages;
-  late List<List<String>> _notes;
+  List<String> _matieres = [];
+  late Future<List<double>> _averages ;
+  List<List<String>> _notes = [];
 
   @override
   void initState() {
     super.initState();
     print("Initializing state...");
+
     _loadData();
   }
 
   Future<void> _loadData() async {
     _matieres = await Mat.getFirstElements();
     _notes = await Mat.getNotes();
+    print(_notes);
     _averages = Mat.calculateAverages(_notes);
+    //print(_averages);
     setState(() {});
   }
 
@@ -74,48 +79,61 @@ class _MatieresState extends State<Matieres> {
           ),
           SizedBox(height: 20),
           Expanded(
-            child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisSpacing: 10.0,
-                crossAxisSpacing: 10.0,
-                childAspectRatio: 1.0,
-              ),
-              itemCount: _matieres.length,
-              itemBuilder: (context, index) {
-                String matiere = _matieres[index].split(';')[0];
-                double average = _averages[index];
-                List<String> notes = _notes[index];
+            child: FutureBuilder<List<double>>(
+              future: _averages,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Erreur: ${snapshot.error}'));
+                } else {
+                  List<double> averages = snapshot.data!;
 
-                if (!matiere.toLowerCase().contains(_searchText.toLowerCase())) {
-                  return Container(); // Empty container if the search doesn't match
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      mainAxisSpacing: 10.0,
+                      crossAxisSpacing: 10.0,
+                      childAspectRatio: 1.0,
+                    ),
+                    itemCount: _matieres.length,
+                    itemBuilder: (context, index) {
+                      String matiere = _matieres[index].split(';')[0];
+                      double average = averages[index];
+                      List<String> notes = _notes[index];
+
+                      if (!matiere.toLowerCase().contains(_searchText.toLowerCase())) {
+                        return Container(); // Empty container if the search doesn't match
+                      }
+
+                      return Card(
+                        elevation: 2.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              matiere,
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            Text(
+                              'Moyenne: ${average.toStringAsFixed(2)}',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                _showNotesDialog(notes, matiere);
+                              },
+                              child: Text('Accéder aux notes'),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
                 }
-
-                return Card(
-                  elevation: 2.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        matiere,
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      Text(
-                        'Moyenne: ${average.toStringAsFixed(2)}',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          _showNotesDialog(notes, matiere);
-                        },
-                        child: Text('Accéder aux notes'),
-                      ),
-                    ],
-                  ),
-                );
               },
             ),
           ),
@@ -138,7 +156,7 @@ class _MatieresState extends State<Matieres> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Résultats ($matiere) '),
+          title: Text('Résultats ($matiere)'),
           content: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -148,7 +166,8 @@ class _MatieresState extends State<Matieres> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     for (int i = 1; i < noteElements.length; i++)
-                      Text('Note ${i.toString()}: ${noteElements[i]}/20 '),
+                      Text('Note ${i.toString()}: ${noteElements[i]}/20'),
+
                   ],
                 );
               }).toList(),
