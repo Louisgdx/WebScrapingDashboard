@@ -31,26 +31,33 @@ class Mat {
   }
 
 
-  static List<double> calculateAverages(List<List<String>> notes) {
+  static Future<List<double>> calculateAverages(List<List<String>> notes) async {
     List<double> averages = [];
 
-    for (List<String> noteRow in notes) {
-      print('Note Row: $noteRow');
-      if (noteRow.isNotEmpty) {
-        List<double> numericNotes = noteRow.map((note) => double.tryParse(note) ?? 0.0).toList();
-        print('Numeric Notes: $numericNotes');
-        double average = numericNotes.isNotEmpty ? numericNotes.reduce((a, b) => a + b) / numericNotes.length : 0.0;
-        print('Average: $average');
-        averages.add(average);
-      } else {
-        averages.add(0.0);
+    for (List<String> row in notes) {
+      double somme = 0.0;
+      int count = 0;
+
+      for (String note in row) {
+        double parsedValue = double.tryParse(note.trim()) ?? 0.0;
+        somme += parsedValue;
+        count++;
       }
+
+      double average = count > 0 ? somme / count : 0.0;
+      averages.add(average);
     }
 
     return averages;
   }
 
+
+
+
+
 }
+
+
 
 
 

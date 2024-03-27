@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'marge_gauche.dart';
@@ -10,6 +9,8 @@ import 'widget_matieres.dart';
 import 'widget_moyenne_gen.dart';
 import '/data/mat.dart';
 import 'matieres.dart';
+import 'suivi.dart';
+
 
 class Dashboard extends StatelessWidget {
   @override
@@ -51,6 +52,7 @@ class Dashboard extends StatelessWidget {
           WidgetAutre(), // Appel de la classe WidgetAutre pour afficher les autres widgets
           WidgetEdt(), // Appel de la classe WidgetEdt pour afficher l'emploi du temps
           MargeGauche(), // Appel de la classe MargeGauche pour afficher la marge gauche
+          Suivi(),
         ],
       ),
     );
@@ -77,5 +79,32 @@ class Dashboard extends StatelessWidget {
       },
     );
   }
+
+  void _showSettingsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Paramètres'),
+          content: Text('Options de paramètres ici'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Fermer'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+
+
+
+
+
 }
 

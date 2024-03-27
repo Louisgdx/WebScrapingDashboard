@@ -2,15 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'colors.dart';
 
-class Entete extends StatelessWidget {
-  final double verticalSpacing;
+class Entete extends StatefulWidget {
+  @override
+  _EnteteState createState() => _EnteteState();
+}
 
-  Entete({this.verticalSpacing = 4.0});
+class _EnteteState extends State<Entete> {
+  bool isSettingsHovered = false;
+  bool isNotificationsHovered = false;
+  bool isProfileHovered = false;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: verticalSpacing, horizontal: 20.0),
+      padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -28,41 +33,95 @@ class Entete extends StatelessWidget {
           ),
           Row(
             children: [
-              IconButton(
-                onPressed: () {
-                  print('Settings button pressed'); // Débogage
-                  // Action lorsque vous appuyez sur l'icône de paramètres
+              GestureDetector(
+                onTap: () {
+                  _showSettingsDialog(context);
                 },
-                icon: SvgPicture.asset(
-                  'assets/icones/settings.svg',
-                  color: AppColors().grisFonce,
-                  height: 23.0,
-                  width: 23.0,
+                child: MouseRegion(
+                  onEnter: (_) {
+                    setState(() {
+                      isSettingsHovered = true;
+                    });
+                  },
+                  onExit: (_) {
+                    setState(() {
+                      isSettingsHovered = false;
+                    });
+                  },
+                  child: SvgPicture.asset(
+                    'assets/icones/settings.svg',
+                    color: isSettingsHovered ? Colors.blue : AppColors().grisFonce,
+                  ),
                 ),
               ),
-              SizedBox(width: 18), // Espacement entre les icônes
-              IconButton(
-                iconSize: 28.0,
-                onPressed: () {
-                  print('Notifications button pressed'); // Débogage
-                  // Action lorsque vous appuyez sur l'icône de notification
+              SizedBox(width: 18),
+              GestureDetector(
+                onTap: () {
+                  // Ajoutez votre logique pour le bouton de notifications ici
                 },
-                icon: Icon(
-                  Icons.notifications,
-                  color: AppColors().grisFonce,
+                child: MouseRegion(
+                  onEnter: (_) {
+                    setState(() {
+                      isNotificationsHovered = true;
+                    });
+                  },
+                  onExit: (_) {
+                    setState(() {
+                      isNotificationsHovered = false;
+                    });
+                  },
+                  child: Icon(
+                    Icons.notifications,
+                    color: isNotificationsHovered ? Colors.blue : AppColors().grisFonce,
+                  ),
                 ),
               ),
-              SizedBox(width: 18), // Espacement entre les icônes
-              IconButton(
-                icon: Icon(Icons.account_circle),
-                onPressed: () {
-                  print("affichage");
+              SizedBox(width: 18),
+              GestureDetector(
+                onTap: () {
+                  // Ajoutez votre logique pour le bouton du profil ici
                 },
+                child: MouseRegion(
+                  onEnter: (_) {
+                    setState(() {
+                      isProfileHovered = true;
+                    });
+                  },
+                  onExit: (_) {
+                    setState(() {
+                      isProfileHovered = false;
+                    });
+                  },
+                  child: Icon(
+                    Icons.account_circle,
+                    color: isProfileHovered ? Colors.blue : AppColors().grisFonce,
+                  ),
+                ),
               ),
             ],
           ),
         ],
       ),
+    );
+  }
+
+  void _showSettingsDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Paramètres'),
+          content: Text('Options de paramètres ici'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Fermer'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
