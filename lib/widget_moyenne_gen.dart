@@ -76,7 +76,7 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                 // Vous pouvez ajouter d'autres widgets à l'intérieur de ce conteneur si nécessaire
               ),
               Positioned(
-                top: 10.0, // Position verticale du texte par rapport au haut du conteneur
+                top: 0.0, // Position verticale du texte par rapport au haut du conteneur
                 left: 5.0, // Position horizontale du texte par rapport à la gauche du conteneur
                 child: Container(
                   width: 250, // Largeur fixe pour le widget AnimatedTextKit
@@ -88,7 +88,7 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                         textAlign: TextAlign.center, // Centrer le texte
                         textStyle: TextStyle(
                           color: AppColors().grisFonce, // Couleur du texte en gris foncé
-                          fontSize: 18.0, // Taille de la police
+                          fontSize: 20.0, // Taille de la police
                           fontFamily: 'Regular',
                           fontWeight: FontWeight.bold,
                         ),
@@ -117,3 +117,4 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
     );
   }
 }
+
