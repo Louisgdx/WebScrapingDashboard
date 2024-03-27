@@ -55,7 +55,7 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                 width: isHovered ? 450.0 : 440.0, // Largeur du widget gonflé
                 height: isHovered ? 140.0 : 130.0, // Hauteur du widget gonflé
                 decoration: BoxDecoration(
-                  color: AppColors().grisFonce.withOpacity(0.3), // Couleur de fond semi-transparente
+                  color: AppColors().bleuClair.withOpacity(0.9), // Couleur de fond semi-transparente
                   borderRadius: BorderRadius.circular(10.0), // Coins arrondis
                   boxShadow: [
                     BoxShadow(
