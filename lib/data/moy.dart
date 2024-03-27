@@ -3,11 +3,14 @@ import 'package:intl/date_symbol_data_local.dart';
 
 class Moy {
   static String getCurrentDate() {
+    // Initialiser les données de localisation pour la langue française
+    initializeDateFormatting('fr_FR');
+
     // Obtention de la date actuelle
     DateTime now = DateTime.now();
 
     // Formatage de la date selon le format souhaité
-    String formattedDate = DateFormat('dd/MM/yyyy').format(now);
+    String formattedDate = DateFormat('EEEE d MMMM', 'fr_FR').format(now);
 
     return formattedDate;
   }
@@ -21,7 +24,4 @@ class Moy {
 
     return formattedTime;
   }
-
-
 }
-
