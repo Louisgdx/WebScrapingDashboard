@@ -35,7 +35,7 @@ class SuiviAbsences extends StatelessWidget {
     var series = [
       charts.Series<AbsenceData, DateTime>(
         id: 'Absences',
-        colorFn: (_, __) => charts.ColorUtil.fromDartColor(Colors.lightBlue.shade300),
+        colorFn: (_, __) => charts.ColorUtil.fromDartColor(Colors.indigo.shade200),
         domainFn: (AbsenceData data, _) => data.date, // Utiliser la propriété date ici
         measureFn: (AbsenceData data, _) => data.absences,
         radiusPxFn: (AbsenceData data, _) => data.bubbleSize,
@@ -84,8 +84,8 @@ class SuiviAbsences extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 10.0,
-          left: 20.0,
+          bottom: 275.0,
+          right: 318.0,
           child: Text(
             'Absences',
             style: TextStyle(
