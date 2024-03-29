@@ -64,7 +64,7 @@ class _WidgetEdtState extends State<WidgetEdt> {
                   onDaySelected: (selectedDay, focusedDay) {
                     showDialog(
                       context: context,
-                      builder: (BuildContext context) => AffichageEdt(),
+                      builder: (BuildContext context) => AffichageEdt(selectedDay),
                     );
                   },
                 ),
