@@ -11,7 +11,7 @@ class AffichageEdt extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       child: Container(
-        padding: EdgeInsets.all(100.0),
+        padding: EdgeInsets.all(20.0),
         decoration: BoxDecoration(
           gradient: AppColors().gradient,
           borderRadius: BorderRadius.circular(10.0),
@@ -29,17 +29,15 @@ class AffichageEdt extends StatelessWidget {
               'Ajoutez ici le contenu pour la date sélectionnée',
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text('Fermer'),
-                ),
-              ],
+            Spacer(), // Pour pousser le bouton "Fermer" vers le bas
+            Align(
+              alignment: Alignment.bottomRight,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Fermer'),
+              ),
             ),
           ],
         ),
