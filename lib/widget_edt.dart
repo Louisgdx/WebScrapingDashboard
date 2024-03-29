@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'colors.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import '/data/moy.dart';
+import 'affichage_edt.dart';
 
 class WidgetEdt extends StatefulWidget {
   @override
@@ -12,13 +10,11 @@ class WidgetEdt extends StatefulWidget {
 
 class _WidgetEdtState extends State<WidgetEdt> {
   bool isHovered = false;
-  CalendarFormat _calendarFormat = CalendarFormat.month; // CalendarFormat.month pour afficher le calendrier du mois
+  CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-    String formattedDate = Moy.getCurrentDate(); // Obtenir la date d'aujourd'hui
-
     return Column(
       children: [
         Expanded(
@@ -61,10 +57,16 @@ class _WidgetEdtState extends State<WidgetEdt> {
                   lastDay: DateTime.utc(2030, 12, 31),
                   calendarFormat: _calendarFormat,
                   headerStyle: HeaderStyle(
-                    formatButtonVisible: false, // Supprimer le bouton de changement de format
+                    formatButtonVisible: false,
                   ),
                   locale: 'fr_FR',
                   startingDayOfWeek: StartingDayOfWeek.monday,
+                  onDaySelected: (selectedDay, focusedDay) {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AffichageEdt(),
+                    );
+                  },
                 ),
               ),
             ),
