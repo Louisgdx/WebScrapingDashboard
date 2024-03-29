@@ -7,9 +7,9 @@ import 'widget_autre.dart';
 import 'widget_edt.dart';
 import 'widget_matieres.dart';
 import 'widget_moyenne_gen.dart';
-import '/data/mat.dart';
 import 'matieres.dart';
 import 'suivi.dart';
+import 'widget_absences.dart';
 
 
 class Dashboard extends StatelessWidget {
@@ -52,6 +52,7 @@ class Dashboard extends StatelessWidget {
           WidgetAutre(), // Appel de la classe WidgetAutre pour afficher les autres widgets
           WidgetEdt(), // Appel de la classe WidgetEdt pour afficher l'emploi du temps
           MargeGauche(), // Appel de la classe MargeGauche pour afficher la marge gauche
+          WidgetAbs(),
           SuiviAbsences(),
 
         ],
