@@ -16,7 +16,7 @@ class MargeGauche extends StatelessWidget {
           top: MediaQuery.of(context).size.height / 2 - 200, // Position verticale centrée
           child: Container(
             width: 60, // Ajustement de la largeur du conteneur
-            height: 400,
+            height: 340, // Modification de la hauteur du conteneur
             decoration: BoxDecoration(
               color: AppColors().bleuClair,
               borderRadius: BorderRadius.only(
