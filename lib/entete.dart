@@ -15,7 +15,7 @@ class _EnteteState extends State<Entete> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 20.0),
+      padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 30.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -26,7 +26,7 @@ class _EnteteState extends State<Entete> {
               style: TextStyle(
                 color: AppColors().grisFonce,
                 fontWeight: FontWeight.bold,
-                fontSize: 15.0,
+                fontSize: 14.0,
                 fontFamily: 'Regular',
               ),
             ),

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
@@ -30,7 +29,8 @@ class _MatieresState extends State<Matieres> {
     _matieres = await Mat.getFirstElements();
     _notes = await Mat.getNotes();
     print(_notes);
-    _averages = Mat.calculateAverages(_notes);
+    Mat mat = Mat();
+    _averages = mat.AfficherMoyennes();
     //print(_averages);
     setState(() {});
   }

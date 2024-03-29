@@ -16,7 +16,7 @@ class MargeGauche extends StatelessWidget {
           top: MediaQuery.of(context).size.height / 2 - 200, // Position verticale centrée
           child: Container(
             width: 60, // Ajustement de la largeur du conteneur
-            height: 400,
+            height: 380,
             decoration: BoxDecoration(
               color: AppColors().bleuClair,
               borderRadius: BorderRadius.only(
@@ -88,7 +88,7 @@ class MargeGauche extends StatelessWidget {
             style: TextStyle(
               color: AppColors().grisFonce,
               fontWeight: FontWeight.bold,
-              fontSize: 15.0,
+              fontSize: 17.0,
               fontFamily: 'Regular',
             ),
           ),

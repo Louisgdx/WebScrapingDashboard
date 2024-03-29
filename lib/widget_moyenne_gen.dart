@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:intl/intl.dart'; // Importer la classe DateFormat
 import 'colors.dart'; // Importer la classe AppColors
+import 'package:animated_text_kit/animated_text_kit.dart';
+import '/data/moy.dart';
+
 
 class WidgetMoyenneGen extends StatefulWidget {
   @override
@@ -15,16 +18,26 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
   @override
   void initState() {
     super.initState();
-    // Appeler les méthodes pour obtenir la date et l'heure lors de l'initialisation du widget
-    _getCurrentDateAndTime();
+    // Appeler la méthode pour mettre à jour la date et l'heure lors de l'initialisation du widget
+    _updateDateTime();
   }
 
-  // Méthode pour obtenir la date et l'heure actuelles
-  void _getCurrentDateAndTime() {
-    setState(() {
-      // Ici, vous devez obtenir la date et l'heure actuelles
-      currentDate = "Mercredi 27 mars"; // Remplacer par la méthode réelle pour obtenir la date
-      currentTime = "14:30"; // Remplacer par la méthode réelle pour obtenir l'heure
+  // Méthode pour mettre à jour la date et l'heure actuelles
+  void _updateDateTime() {
+    // Obtenir la date et l'heure actuelles
+    currentDate = Moy.getCurrentDate();
+    currentTime = Moy.getCurrentTime();
+
+    // Mettre à jour l'affichage toutes les secondes
+    Future.delayed(Duration(seconds: 1), () {
+      if (mounted) {
+        // Vérifier si le widget est toujours monté avant de mettre à jour l'état
+        setState(() {
+          currentDate = Moy.getCurrentDate();
+          currentTime = Moy.getCurrentTime();
+        });
+        _updateDateTime(); // Appeler la méthode récursivement pour mettre à jour continuellement
+      }
     });
   }
 
@@ -86,7 +99,7 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                 ),
               ),
               Positioned(
-                top: 50.0, // Position verticale du texte par rapport au haut du conteneur
+                top: 45.0, // Position verticale du texte par rapport au haut du conteneur
                 left: 10.0, // Position horizontale du texte par rapport à la gauche du conteneur
                 child: AnimatedTextKit(
                   repeatForever: true,

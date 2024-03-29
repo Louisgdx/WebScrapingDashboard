@@ -42,7 +42,7 @@ class _WidgetEdtState extends State<WidgetEdt> {
                 duration: Duration(milliseconds: 200),
                 curve: Curves.easeInOut,
                 width: isHovered ? 450.0 : 440.0,
-                height: isHovered ? 380.0 : 370.0,
+                height: isHovered ? 370.0 : 360.0,
                 decoration: BoxDecoration(
                   color: AppColors().bleuClair.withOpacity(0.9),
                   borderRadius: BorderRadius.circular(10.0),

@@ -31,24 +31,27 @@ class Mat {
   }
 
 
-  static Future<List<double>> calculateAverages(List<List<String>> notes) async {
+  Future<List<double>> AfficherMoyennes() async {
     List<double> averages = [];
+    List<List<dynamic>> data = [];
+    final mydata = await rootBundle.loadString("assets/bdd/notes2_moy.csv");
+    List<List<dynamic>> csvTableau = CsvToListConverter().convert(mydata);
+    data = csvTableau;
+    // Parcourir chaque ligne du tableau CSV
+    for (List<dynamic> row in csvTableau) {
 
-    for (List<String> row in notes) {
-      double somme = 0.0;
-      int count = 0;
+      // Vérifier si la ligne n'est pas vide et si elle a au moins une colonne
+      if (row.isNotEmpty) {
+        // Récupérer la dernière valeur de la ligne (dernière colonne)
+        dynamic lastValue = row.last;
 
-      for (String note in row) {
-        double parsedValue = double.tryParse(note.trim()) ?? 0.0;
-        somme += parsedValue;
-        count++;
+        // Convertir la dernière valeur en double et l'ajouter à la liste des moyennes
+        double average = double.tryParse(lastValue.toString().replaceAll(',', '.')) ?? 0.0;
+        averages.add(average);
       }
-
-      double average = count > 0 ? somme / count : 0.0;
-      averages.add(average);
     }
 
-    return averages;
+    return averages; // Ajout de cette ligne pour retourner la liste des moyennes
   }
 
 
@@ -56,8 +59,3 @@ class Mat {
 
 
 }
-
-
-
-
-
