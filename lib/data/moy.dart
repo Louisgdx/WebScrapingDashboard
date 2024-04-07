@@ -1,5 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:csv/csv.dart';
 
 class Moy {
   static String getCurrentDate() {
@@ -27,4 +29,10 @@ class Moy {
 
     return formattedTime;
   }
+
+
+  // affichage de la moyenne générale :
+
+
+
 }

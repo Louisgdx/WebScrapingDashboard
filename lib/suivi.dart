@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'colors.dart';
 
-
 class AbsenceData {
   final DateTime date; // Garder la propriété date
   final int absences;
@@ -19,18 +18,24 @@ class SuiviAbsences extends StatelessWidget {
   Widget build(BuildContext context) {
     initializeDateFormatting('fr_FR');
 
+    // Formater la date de début en français
+    DateFormat dateFormat = DateFormat.yMMMMd('fr_FR');
+    String startDateFormatted = dateFormat.format(DateTime(2024, 1, 1));
+
     DateTime currentDate = DateTime.now();
-    DateTime startDate = DateTime(2024, 1, 1);
 
     var random = Random();
     var data = [
-      for (DateTime date = startDate; date.isBefore(currentDate); date = date.add(Duration(days: 7)))
+      for (DateTime date = DateTime(2024, 1, 1); date.isBefore(currentDate); date = date.add(Duration(days: 7)))
         AbsenceData(
           date,
           random.nextInt(50),
-          random.nextInt(30) + 5,
+          5 + (random.nextInt(10) * 2), // Ajuster la taille de la bulle en fonction du nombre d'absences
         ),
     ];
+
+    // Filtrer les données pour ne pas inclure les semaines avec 0 absences
+    var filteredData = data.where((absence) => absence.absences > 0).toList();
 
     var series = [
       charts.Series<AbsenceData, DateTime>(
@@ -38,8 +43,10 @@ class SuiviAbsences extends StatelessWidget {
         colorFn: (_, __) => charts.ColorUtil.fromDartColor(Colors.indigo.shade200),
         domainFn: (AbsenceData data, _) => data.date, // Utiliser la propriété date ici
         measureFn: (AbsenceData data, _) => data.absences,
-        radiusPxFn: (AbsenceData data, _) => data.bubbleSize,
-        data: data,
+        radiusPxFn: (AbsenceData data, _) => data.bubbleSize.toDouble(),
+        data: filteredData, // Utiliser les données filtrées
+        // Ajouter une fonction pour afficher les tooltips
+        labelAccessorFn: (AbsenceData row, _) => '${row.absences}', // Utilisation des labels par défaut pour afficher les tooltips
       )
     ];
 
@@ -49,27 +56,34 @@ class SuiviAbsences extends StatelessWidget {
       dateTimeFactory: const charts.LocalDateTimeFactory(),
       defaultRenderer: charts.PointRendererConfig(),
       primaryMeasureAxis: charts.NumericAxisSpec(
-        showAxisLine: true,
-        renderSpec: charts.SmallTickRendererSpec(
-          lineStyle: charts.LineStyleSpec(
-            color: charts.ColorUtil.fromDartColor(AppColors().grisFonce),
-          ),
-          labelStyle: charts.TextStyleSpec(
-            color: charts.ColorUtil.fromDartColor(AppColors().grisFonce),
-          ),
-        ),
+        showAxisLine: false, // Retirer l'axe des ordonnées
       ),
       domainAxis: charts.DateTimeAxisSpec(
-        showAxisLine: true,
         renderSpec: charts.SmallTickRendererSpec(
-          lineStyle: charts.LineStyleSpec(
-            color: charts.ColorUtil.fromDartColor(AppColors().grisFonce),
-          ),
           labelStyle: charts.TextStyleSpec(
+            fontSize: 12,
             color: charts.ColorUtil.fromDartColor(AppColors().grisFonce),
           ),
         ),
+        tickFormatterSpec: charts.AutoDateTimeTickFormatterSpec(
+          day: charts.TimeFormatterSpec(
+            format: 'd',
+            transitionFormat: 'dd/MM',
+          ),
+          month: charts.TimeFormatterSpec(
+            format: 'MMM',
+            transitionFormat: 'MMM',
+          ),
+        ),
       ),
+      // Activer les tooltips
+      behaviors: [
+        charts.LinePointHighlighter(
+          symbolRenderer: charts.CircleSymbolRenderer(),
+          showHorizontalFollowLine: charts.LinePointHighlighterFollowLineType.none,
+          showVerticalFollowLine: charts.LinePointHighlighterFollowLineType.nearest,
+        )
+      ],
     );
 
     return Stack(
@@ -85,13 +99,13 @@ class SuiviAbsences extends StatelessWidget {
         ),
         Positioned(
           bottom: 275.0,
-          right: 318.0,
+          right: 320.0,
           child: Text(
-            'Absences',
+            'Absences', // Afficher la date de début formatée en français
             style: TextStyle(
               color: AppColors().grisFonce,
               fontWeight: FontWeight.bold,
-              fontSize: 18,
+              fontSize: 15,
             ),
           ),
         ),
@@ -99,3 +113,4 @@ class SuiviAbsences extends StatelessWidget {
     );
   }
 }
+

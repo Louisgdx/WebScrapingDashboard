@@ -75,7 +75,7 @@ class _WidgetMatieresState extends State<WidgetMatieres> {
                 top: 10,
                 left: 10,
                 child: Text(
-                  'Cours > ',
+                  'Résultats > ',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

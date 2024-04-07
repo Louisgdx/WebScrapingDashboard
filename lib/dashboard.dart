@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:dashboard_bouarour_fodouop_gaudeaux/affichage_edt.dart';
+import 'package:dashboard_bouarour_fodouop_gaudeaux/affichage_messages.dart';
 import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'marge_gauche.dart';
@@ -56,6 +57,7 @@ class Dashboard extends StatelessWidget {
           MargeGauche(), // Appel de la classe MargeGauche pour afficher la marge gauche
           WidgetAbs(),
           SuiviAbsences(),
+
 
 
         ],

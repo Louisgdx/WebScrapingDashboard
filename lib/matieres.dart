@@ -14,7 +14,7 @@ class _MatieresState extends State<Matieres> {
   final TextEditingController _searchController = TextEditingController();
   String _searchText = '';
   List<String> _matieres = [];
-  late Future<List<double>> _averages ;
+  late Future<List<String>> _averages;
   List<List<String>> _notes = [];
 
   @override
@@ -79,7 +79,7 @@ class _MatieresState extends State<Matieres> {
           ),
           SizedBox(height: 20),
           Expanded(
-            child: FutureBuilder<List<double>>(
+            child: FutureBuilder<List<String>>(
               future: _averages,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
@@ -87,7 +87,7 @@ class _MatieresState extends State<Matieres> {
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Erreur: ${snapshot.error}'));
                 } else {
-                  List<double> averages = snapshot.data!;
+                  List<String> averages = snapshot.data!;
 
                   return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -99,7 +99,7 @@ class _MatieresState extends State<Matieres> {
                     itemCount: _matieres.length,
                     itemBuilder: (context, index) {
                       String matiere = _matieres[index].split(';')[0];
-                      double average = averages[index];
+                      String average = averages[index];
                       List<String> notes = _notes[index];
 
                       if (!matiere.toLowerCase().contains(_searchText.toLowerCase())) {
@@ -119,7 +119,7 @@ class _MatieresState extends State<Matieres> {
                               style: TextStyle(fontSize: 20),
                             ),
                             Text(
-                              'Moyenne: ${average.toStringAsFixed(2)}',
+                              'Moyenne : $average,
                               style: TextStyle(fontSize: 16),
                             ),
                             ElevatedButton(
