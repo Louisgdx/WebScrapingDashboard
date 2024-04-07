@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
+import '/data/message.dart';
+import 'affichage_messages.dart'; // Importez la classe pour afficher les messages
 
 class MargeGauche extends StatelessWidget {
   final Widget? child;
@@ -16,7 +18,7 @@ class MargeGauche extends StatelessWidget {
           top: MediaQuery.of(context).size.height / 2 - 200, // Position verticale centrée
           child: Container(
             width: 60, // Ajustement de la largeur du conteneur
-            height: 340, // Modification de la hauteur du conteneur
+            height: 330, // Modification de la hauteur du conteneur
             decoration: BoxDecoration(
               color: AppColors().bleuClair,
               borderRadius: BorderRadius.only(
@@ -52,6 +54,12 @@ class MargeGauche extends StatelessWidget {
                     icon: Icon(Icons.message),
                     onPressed: () {
                       // Action lors de l'appui sur le bouton Messages
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AffichageMessages(); // Affiche la fenêtre modale des messages
+                        },
+                      );
                     },
                   ),
                 ),

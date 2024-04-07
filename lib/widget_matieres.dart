@@ -61,37 +61,28 @@ class _WidgetMatieresState extends State<WidgetMatieres> {
                   borderRadius: BorderRadius.circular(10.0),
                   child: ColorFiltered(
                     colorFilter: ColorFilter.mode(
-                      AppColors().bleuClair.withOpacity(0.9),
-                      BlendMode.dstATop,
+                      Colors.indigo.shade200.withOpacity(0.9),
+                      BlendMode.color, // Utilisez le mode de mélange de couleur
                     ),
                     child: Image.asset(
-                      'assets/images/matieres.png',
+                      'assets/images/cours.jpg',
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
               ),
-              if (isHovered)
-                Positioned.fill(
-                  child: Center(
-                    child: Tooltip(
-                      message: 'Cours',
-                      textStyle: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.white,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors().grisFonce,
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Container(
-                        color: Colors.transparent,
-                        width: double.infinity,
-                        height: double.infinity,
-                      ),
-                    ),
+              Positioned(
+                top: 10,
+                left: 10,
+                child: Text(
+                  'Résultats > ',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
                   ),
                 ),
+              ),
             ],
           ),
         ),

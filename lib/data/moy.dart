@@ -1,5 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:csv/csv.dart';
 
 class Moy {
   static String getCurrentDate() {
@@ -12,6 +14,9 @@ class Moy {
     // Formatage de la date selon le format souhaité
     String formattedDate = DateFormat('EEEE d MMMM', 'fr_FR').format(now);
 
+    // Mettre en majuscule la première lettre du jour
+    formattedDate = formattedDate.replaceRange(0, 1, formattedDate[0].toUpperCase());
+
     return formattedDate;
   }
 
@@ -20,8 +25,14 @@ class Moy {
     DateTime now = DateTime.now();
 
     // Formatage de l'heure selon le format souhaité
-    String formattedTime = DateFormat('HH:mm').format(now);
+    String formattedTime = DateFormat('HH : mm').format(now);
 
     return formattedTime;
   }
+
+
+// affichage de la moyenne générale :
+
+
+
 }
