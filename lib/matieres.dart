@@ -114,22 +114,22 @@ class _MatieresState extends State<Matieres> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              matiere,
-                              style: TextStyle(fontSize: 20),
-                            ),
-                            Text(
-                              'Moyenne : $average,
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                _showNotesDialog(notes, matiere);
-                              },
-                              child: Text('Accéder aux notes'),
-                            ),
-                          ],
+                          Text(
+                          matiere,
+                          style: TextStyle(fontSize: 20),
                         ),
+                        Text(
+                            'Moyenne : $average',
+                            style: TextStyle(fontSize: 16),
+                      ),
+                      ElevatedButton(
+                      onPressed: () {
+                      _showNotesDialog(notes, matiere);
+                      },
+                      child: Text('Accéder aux notes'),
+                      ),
+                      ],
+                      ),
                       );
                     },
                   );

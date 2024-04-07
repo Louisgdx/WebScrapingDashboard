@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Importer la classe DateFormat
-import 'colors.dart'; // Importer la classe AppColors
+import 'colors.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import '/data/moy.dart';
-
+import '/data/mat.dart';
 
 class WidgetMoyenneGen extends StatefulWidget {
   @override
@@ -14,12 +13,14 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
   bool isHovered = false;
   String currentDate = ''; // Stocker la date actuelle
   String currentTime = ''; // Stocker l'heure actuelle
+  String moyenneGenerale = ''; // Stocker la moyenne générale
 
   @override
   void initState() {
     super.initState();
     // Appeler la méthode pour mettre à jour la date et l'heure lors de l'initialisation du widget
     _updateDateTime();
+    _updateMoyenneGenerale();
   }
 
   // Méthode pour mettre à jour la date et l'heure actuelles
@@ -38,6 +39,14 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
         });
         _updateDateTime(); // Appeler la méthode récursivement pour mettre à jour continuellement
       }
+    });
+  }
+
+  // Méthode pour mettre à jour la moyenne générale
+  void _updateMoyenneGenerale() async {
+    String moyenne = await Mat().calculerMoyenneGenerale();
+    setState(() {
+      moyenneGenerale = moyenne;
     });
   }
 
@@ -105,7 +114,19 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                   repeatForever: true,
                   animatedTexts: [
                     RotateAnimatedText(
+
+                        'Moyenne générale : $moyenneGenerale/20',
+
+                      textStyle: TextStyle(
+                        color: Colors.white, // Couleur du texte
+                        fontSize: 20.0, // Taille de la police
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    RotateAnimatedText(
+
                       currentDate,
+
                       textStyle: TextStyle(
                         color: Colors.white, // Couleur du texte
                         fontSize: 20.0, // Taille de la police
@@ -114,6 +135,7 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                     ),
                     RotateAnimatedText(
                       currentTime,
+
                       textStyle: TextStyle(
                         color: Colors.white, // Couleur du texte
                         fontSize: 20.0, // Taille de la police

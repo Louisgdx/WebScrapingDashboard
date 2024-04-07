@@ -75,6 +75,29 @@ class Mat {
 
 
 
+  // afficher la moy gen
+
+  Future<String> calculerMoyenneGenerale() async {
+    List<String> averages = await AfficherMoyennes();
+
+    if (averages.isEmpty) {
+      return "Aucune moyenne disponible";
+    }
+
+    double sum = 0;
+    int count = 0;
+
+    for (String moyenne in averages) {
+      double moyenneParsed = double.tryParse(moyenne) ?? 0;
+      sum += moyenneParsed;
+      count++;
+    }
+
+    double moyenneGenerale = sum / count;
+
+    return moyenneGenerale.toStringAsFixed(2);
+  }
+
 
 }
 
