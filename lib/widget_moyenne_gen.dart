@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'colors.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'colors.dart'; // Importer la classe AppColors
+import '/data/moy.dart';
+import '/data/mat.dart';
 
 class WidgetMoyenneGen extends StatefulWidget {
   @override
@@ -11,20 +13,40 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
   bool isHovered = false;
   String currentDate = ''; // Stocker la date actuelle
   String currentTime = ''; // Stocker l'heure actuelle
+  String moyenneGenerale = ''; // Stocker la moyenne générale
 
   @override
   void initState() {
     super.initState();
-    // Appeler les méthodes pour obtenir la date et l'heure lors de l'initialisation du widget
-    _getCurrentDateAndTime();
+    // Appeler la méthode pour mettre à jour la date et l'heure lors de l'initialisation du widget
+    _updateDateTime();
+    _updateMoyenneGenerale();
   }
 
-  // Méthode pour obtenir la date et l'heure actuelles
-  void _getCurrentDateAndTime() {
+  // Méthode pour mettre à jour la date et l'heure actuelles
+  void _updateDateTime() {
+    // Obtenir la date et l'heure actuelles
+    currentDate = Moy.getCurrentDate();
+    currentTime = Moy.getCurrentTime();
+
+    // Mettre à jour l'affichage toutes les secondes
+    Future.delayed(Duration(seconds: 1), () {
+      if (mounted) {
+        // Vérifier si le widget est toujours monté avant de mettre à jour l'état
+        setState(() {
+          currentDate = Moy.getCurrentDate();
+          currentTime = Moy.getCurrentTime();
+        });
+        _updateDateTime(); // Appeler la méthode récursivement pour mettre à jour continuellement
+      }
+    });
+  }
+
+  // Méthode pour mettre à jour la moyenne générale
+  void _updateMoyenneGenerale() async {
+    String moyenne = await Mat().calculerMoyenneGenerale();
     setState(() {
-      // Ici, vous devez obtenir la date et l'heure actuelles
-      currentDate = "Mercredi 27 mars"; // Remplacer par la méthode réelle pour obtenir la date
-      currentTime = "14:30"; // Remplacer par la méthode réelle pour obtenir l'heure
+      moyenneGenerale = moyenne;
     });
   }
 
@@ -86,13 +108,25 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                 ),
               ),
               Positioned(
-                top: 50.0, // Position verticale du texte par rapport au haut du conteneur
+                top: 45.0, // Position verticale du texte par rapport au haut du conteneur
                 left: 10.0, // Position horizontale du texte par rapport à la gauche du conteneur
                 child: AnimatedTextKit(
                   repeatForever: true,
                   animatedTexts: [
                     RotateAnimatedText(
+
+                      'Moyenne générale : $moyenneGenerale/20',
+
+                      textStyle: TextStyle(
+                        color: Colors.white, // Couleur du texte
+                        fontSize: 20.0, // Taille de la police
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    RotateAnimatedText(
+
                       currentDate,
+
                       textStyle: TextStyle(
                         color: Colors.white, // Couleur du texte
                         fontSize: 20.0, // Taille de la police
@@ -101,6 +135,7 @@ class _WidgetMoyenneGenState extends State<WidgetMoyenneGen> {
                     ),
                     RotateAnimatedText(
                       currentTime,
+
                       textStyle: TextStyle(
                         color: Colors.white, // Couleur du texte
                         fontSize: 20.0, // Taille de la police
