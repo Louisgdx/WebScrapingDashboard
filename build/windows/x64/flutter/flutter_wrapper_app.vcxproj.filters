@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\lfodo\AndroidStudioProjects\dashboard_bouarour_fodouop_gaudeaux\windows\flutter\ephemeral\cpp_client_wrapper\core_implementations.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\lfodo\AndroidStudioProjects\dashboard_bouarour_fodouop_gaudeaux\windows\flutter\ephemeral\cpp_client_wrapper\standard_codec.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\lfodo\AndroidStudioProjects\dashboard_bouarour_fodouop_gaudeaux\windows\flutter\ephemeral\cpp_client_wrapper\flutter_engine.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\lfodo\AndroidStudioProjects\dashboard_bouarour_fodouop_gaudeaux\windows\flutter\ephemeral\cpp_client_wrapper\flutter_view_controller.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\lfodo\AndroidStudioProjects\dashboard_bouarour_fodouop_gaudeaux\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B7D11576-62A6-31F7-B5BE-69D3E56396BD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{F0A4C743-9515-3CFB-930C-8B0C11733DFF}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

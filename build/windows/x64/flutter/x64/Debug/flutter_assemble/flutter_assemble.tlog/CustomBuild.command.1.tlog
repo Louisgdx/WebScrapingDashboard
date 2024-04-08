@@ -1,0 +1,28 @@
+^C:\USERS\LFODO\ANDROIDSTUDIOPROJECTS\DASHBOARD_BOUAROUR_FODOUOP_GAUDEAUX\BUILD\WINDOWS\X64\CMAKEFILES\EE019800F2C9EE05FCB6F165CBC940E4\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\Users\lfodo\FlutterWeb\flutter PROJECT_DIR=C:\Users\lfodo\AndroidStudioProjects\dashboard_bouarour_fodouop_gaudeaux FLUTTER_ROOT=C:\Users\lfodo\FlutterWeb\flutter FLUTTER_EPHEMERAL_DIR=C:\Users\lfodo\AndroidStudioProjects\dashboard_bouarour_fodouop_gaudeaux\windows\flutter\ephemeral PROJECT_DIR=C:\Users\lfodo\AndroidStudioProjects\dashboard_bouarour_fodouop_gaudeaux FLUTTER_TARGET=C:\Users\lfodo\AndroidStudioProjects\dashboard_bouarour_fodouop_gaudeaux\lib\main.dart DART_DEFINES=Zmx1dHRlci5pbnNwZWN0b3Iuc3RydWN0dXJlZEVycm9ycz10cnVl,RkxVVFRFUl9XRUJfQVVUT19ERVRFQ1Q9dHJ1ZQ==,RkxVVFRFUl9XRUJfQ0FOVkFTS0lUX1VSTD1odHRwczovL3d3dy5nc3RhdGljLmNvbS9mbHV0dGVyLWNhbnZhc2tpdC8wNDgxN2M5OWM5ZmQ0OTU2ZjI3NTA1MjA0ZjdlMzQ0MzM1ODEwYWVkLw== DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=C:\Users\lfodo\AndroidStudioProjects\dashboard_bouarour_fodouop_gaudeaux\.dart_tool\package_config.json C:/Users/lfodo/FlutterWeb/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\LFODO\ANDROIDSTUDIOPROJECTS\DASHBOARD_BOUAROUR_FODOUOP_GAUDEAUX\BUILD\WINDOWS\X64\CMAKEFILES\DDBA071E1327421414CEA9E2AFD07F6F\FLUTTER_ASSEMBLE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\LFODO\ANDROIDSTUDIOPROJECTS\DASHBOARD_BOUAROUR_FODOUOP_GAUDEAUX\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/lfodo/AndroidStudioProjects/dashboard_bouarour_fodouop_gaudeaux/windows -BC:/Users/lfodo/AndroidStudioProjects/dashboard_bouarour_fodouop_gaudeaux/build/windows/x64 --check-stamp-file C:/Users/lfodo/AndroidStudioProjects/dashboard_bouarour_fodouop_gaudeaux/build/windows/x64/flutter/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
