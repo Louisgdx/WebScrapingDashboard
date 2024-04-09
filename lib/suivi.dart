@@ -100,7 +100,8 @@ class SuiviAbsences extends StatelessWidget {
                   return AlertDialog(
                     title: Text('Absences'),
                     content: Text(
-                      'Nombre d\'absences du \n${DateFormat.yMMMMd('fr_FR').format(selectedDatum.datum.startDate)} au ${DateFormat.yMMMMd('fr_FR').format(selectedDatum.datum.endDate)} : \n${selectedDatum.datum.absences}',
+                      'Nombre d\'absences\n du ${DateFormat.yMMMMd('fr_FR').format(selectedDatum.datum.startDate)}\nau ${DateFormat.yMMMMd('fr_FR').format(selectedDatum.datum.endDate)} : ${selectedDatum.datum.absences}',
+
                     ),
                     actions: <Widget>[
                       TextButton(

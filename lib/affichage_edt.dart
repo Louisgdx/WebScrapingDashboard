@@ -20,14 +20,14 @@ class AffichageEdt extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Emploi du temps du ${DateFormat('dd/MM/yyyy').format(jourSelectionne)}',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Ajoutez ici le contenu pour la date sélectionnée',
-              style: TextStyle(fontSize: 16),
+            // Texte centré horizontalement
+            SizedBox(
+              width: double.infinity,
+              child: Text(
+                'Emploi du temps du ${DateFormat('dd/MM/yyyy').format(jourSelectionne)}',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: AppColors().grisFonce),
+              ),
             ),
             Spacer(), // Pour pousser le bouton "Fermer" vers le bas
             Align(
