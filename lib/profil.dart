@@ -36,21 +36,18 @@ class Profil extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 Text(
-                  'Nom: Gaudeaux',
+                  'Nom: Baba',
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  'Prénom: Louis',
+                  'Prénom: Ali',
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  'Classe: 2I',
+                  'Classe: 7B',
                   style: TextStyle(fontSize: 20),
                 ),
-                Text(
-                  'Majeure: Intéligence Artificielle',
-                  style: TextStyle(fontSize: 20),
-                ),
+
               ],
             ),
           ),

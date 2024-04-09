@@ -20,71 +20,35 @@ class _EnteteState extends State<Entete> {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.transparent, // Définir la couleur de fond comme transparente
-      elevation: 0, // Enlever l'ombre de l'AppBar
-      title: Text(
-        'Tableau de bord',
-        style: TextStyle(
-          color: appColors.grisFonce,
-          fontWeight: FontWeight.bold,
-          fontSize: 14.0,
-          fontFamily: 'Regular',
+    return Stack(
+      children: [
+        Positioned(
+          top: 10,
+          left: 0,
+          right: 0,
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            color: Colors.transparent,
+            child: Text(
+              'Tableau de bord',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: appColors.grisFonce,
+                fontWeight: FontWeight.bold,
+                fontSize: 14.0,
+                fontFamily: 'Regular',
+              ),
+            ),
+          ),
         ),
-      ),
-      actions: [
-        PopupMenuButton<String>(
-          onSelected: (value) {
-            // Gérer l'action de sélection
-            if (value == 'Profil') {
-              // Afficher la boîte de dialogue pour le profil
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return Dialog(
-                    backgroundColor: Colors.transparent, // Fond transparent
-                    elevation: 0, // Pas d'ombre
-                    child: Profil(), // Afficher la page de profil
-                  );
-                },
-              );
-            } else if (value == 'Déconnexion') {
-              // Afficher un message de déconnexion réussie
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text('Déconnexion réussie'),
-                    content: Text('Vous avez été déconnecté avec succès.'),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop(); // Fermer le dialog
-                          Navigator.of(context).pop(); // Fermer la boîte de dialogue
-
-                        },
-                        child: Text('OK'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            } else {
-              // Ajouter la logique pour d'autres options si nécessaire
-            }
-          },
-          itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-            PopupMenuItem<String>(
-              value: 'Profil',
-              child: Text('Profil'),
-            ),
-            PopupMenuItem<String>(
-              value: 'Déconnexion',
-              child: Text('Déconnexion'),
-            ),
-          ],
+        AppBar(
+          backgroundColor: Colors.transparent,
+          // Définir la couleur de fond comme transparente
+          elevation: 5,
+          // Enlever l'ombre de l'AppBar
         ),
       ],
     );
   }
 }
+
