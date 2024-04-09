@@ -43,4 +43,3 @@ class MessageBdd {
     docRef.set(message.toHashMap());
   }
 }
-
