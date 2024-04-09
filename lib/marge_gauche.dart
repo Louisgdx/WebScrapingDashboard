@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 import '/data/message.dart';
 import 'affichage_messages.dart'; // Importez la classe pour afficher les messages
+import 'aide.dart'; // Importez la classe pour la page d'aide
 
 class MargeGauche extends StatelessWidget {
   final Widget? child;
@@ -18,7 +19,7 @@ class MargeGauche extends StatelessWidget {
           top: MediaQuery.of(context).size.height / 2 - 200, // Position verticale centrée
           child: Container(
             width: 60, // Ajustement de la largeur du conteneur
-            height: 330, // Modification de la hauteur du conteneur
+            height: 330,
             decoration: BoxDecoration(
               color: AppColors().bleuClair,
               borderRadius: BorderRadius.only(
@@ -79,7 +80,57 @@ class MargeGauche extends StatelessWidget {
                   child: IconButton(
                     icon: Icon(Icons.help_outline),
                     onPressed: () {
-                      // Action lors de l'appui sur l'icône d'aide
+                      // Naviguer vers la page d'aide
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pop(); // Ferme la boîte de dialogue lorsque l'utilisateur clique en dehors d'elle
+                            },
+                            child: Dialog(
+                              backgroundColor: Colors.transparent,
+                              elevation: 0,
+                              child: Center(
+                                child: Container(
+                                  padding: EdgeInsets.all(20),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 5,
+                                        blurRadius: 7,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        'Si vous rencontrez des problèmes avec votre espace personnel, n\'hésitez pas à contacter le support à l\'adresse suivante :',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        'support.aide@edu.com',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
                     },
                   ),
                 ),
@@ -96,7 +147,7 @@ class MargeGauche extends StatelessWidget {
             style: TextStyle(
               color: AppColors().grisFonce,
               fontWeight: FontWeight.bold,
-              fontSize: 15.0,
+              fontSize: 17.0,
               fontFamily: 'Regular',
             ),
           ),

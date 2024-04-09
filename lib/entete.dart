@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'colors.dart';
+import 'package:flutter/services.dart';
+
+import 'package:flutter_svg/svg.dart'; // Importez les packages tiers d'abord
+import 'profil.dart'; // Ensuite, les importations locales
+import 'colors.dart'; // Ensuite, les importations locales
 
 class Entete extends StatefulWidget {
   @override
@@ -8,120 +11,80 @@ class Entete extends StatefulWidget {
 }
 
 class _EnteteState extends State<Entete> {
+  // Définissez les couleurs une seule fois pour éviter les instances multiples
+  final AppColors appColors = AppColors();
+
   bool isSettingsHovered = false;
   bool isNotificationsHovered = false;
   bool isProfileHovered = false;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 20.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Text(
-              'Tableau de bord',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: AppColors().grisFonce,
-                fontWeight: FontWeight.bold,
-                fontSize: 15.0,
-                fontFamily: 'Regular',
-              ),
-            ),
-          ),
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  _showSettingsDialog(context);
-                },
-                child: MouseRegion(
-                  onEnter: (_) {
-                    setState(() {
-                      isSettingsHovered = true;
-                    });
-                  },
-                  onExit: (_) {
-                    setState(() {
-                      isSettingsHovered = false;
-                    });
-                  },
-                  child: SvgPicture.asset(
-                    'assets/icones/settings.svg',
-                    color: isSettingsHovered ? Colors.blue : AppColors().grisFonce,
-                  ),
-                ),
-              ),
-              SizedBox(width: 18),
-              GestureDetector(
-                onTap: () {
-                  // Ajoutez votre logique pour le bouton de notifications ici
-                },
-                child: MouseRegion(
-                  onEnter: (_) {
-                    setState(() {
-                      isNotificationsHovered = true;
-                    });
-                  },
-                  onExit: (_) {
-                    setState(() {
-                      isNotificationsHovered = false;
-                    });
-                  },
-                  child: Icon(
-                    Icons.notifications,
-                    color: isNotificationsHovered ? Colors.blue : AppColors().grisFonce,
-                  ),
-                ),
-              ),
-              SizedBox(width: 18),
-              GestureDetector(
-                onTap: () {
-                  // Ajoutez votre logique pour le bouton du profil ici
-                },
-                child: MouseRegion(
-                  onEnter: (_) {
-                    setState(() {
-                      isProfileHovered = true;
-                    });
-                  },
-                  onExit: (_) {
-                    setState(() {
-                      isProfileHovered = false;
-                    });
-                  },
-                  child: Icon(
-                    Icons.account_circle,
-                    color: isProfileHovered ? Colors.blue : AppColors().grisFonce,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
+    return AppBar(
+      backgroundColor: Colors.transparent, // Définir la couleur de fond comme transparente
+      elevation: 0, // Enlever l'ombre de l'AppBar
+      title: Text(
+        'Tableau de bord',
+        style: TextStyle(
+          color: appColors.grisFonce,
+          fontWeight: FontWeight.bold,
+          fontSize: 14.0,
+          fontFamily: 'Regular',
+        ),
       ),
-    );
-  }
+      actions: [
+        PopupMenuButton<String>(
+          onSelected: (value) {
+            // Gérer l'action de sélection
+            if (value == 'Profil') {
+              // Afficher la boîte de dialogue pour le profil
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Dialog(
+                    backgroundColor: Colors.transparent, // Fond transparent
+                    elevation: 0, // Pas d'ombre
+                    child: Profil(), // Afficher la page de profil
+                  );
+                },
+              );
+            } else if (value == 'Déconnexion') {
+              // Afficher un message de déconnexion réussie
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Déconnexion réussie'),
+                    content: Text('Vous avez été déconnecté avec succès.'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Fermer le dialog
+                          Navigator.of(context).pop(); // Fermer la boîte de dialogue
 
-  void _showSettingsDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Paramètres'),
-          content: Text('Options de paramètres ici'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Fermer'),
+                        },
+                        child: Text('OK'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            } else {
+              // Ajouter la logique pour d'autres options si nécessaire
+            }
+          },
+          itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+            PopupMenuItem<String>(
+              value: 'Profil',
+              child: Text('Profil'),
+            ),
+            PopupMenuItem<String>(
+              value: 'Déconnexion',
+              child: Text('Déconnexion'),
             ),
           ],
-        );
-      },
+        ),
+      ],
     );
   }
 }
