@@ -1,13 +1,14 @@
-<<<<<<< HEAD
-# LearningNavigator : A Personalized Learning Dashboard for Students
+LEARNING NAVIGATOR
 
-DASHBOARD FRONTEND :
+Notre projet consiste en un dashboard pour étudiant. Il centralise et simplifie toutes les informations utiles à l'étudiant, telle que : ces notes, ces moyennes par matière et générale, ces absences, ainsi que le moyen de rentrer en contact avec ses professeurs.
 
-Welcome, this project is the frontend of the dashboard responsible of data visualization. It refers to the user interface and user experience components that users directly interact with.
+Ce projet est intéressant dans la mesure ou il existe très peu de plateforme qui ont developpé une interface de ce type. La seule alternative étant l'application Pronote.
 
-LearningNavigator is an innovative educational dashboard designed to empower students in their learning journey. Providing at-a-glance insights into grades, overall performance, and subject-specific averages,it goes beyond conventional features by tracking participation, suggesting personalized courses, and visualizing individual progress against learning objectives with integrated teacher feedback.
+La prise en main du dashboard est très simple, de plus il est possible de le raccorder à votre propre espace Pronote en utilisant l'API suivante : https://www.index-education.com/fr/serviceWebHP.php
 
-Group members : BOUAROUR Killian, FODOUOP Lucrece, GAUDEAUX Louis
+
+
+Membres du groupe : BOUAROUR Killian, FODOUOP Lucrece, GAUDEAUX Louis
 
 
 (Ingé 2 Majeure Intelligence Artificielle)
