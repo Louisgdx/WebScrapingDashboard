@@ -41,7 +41,7 @@ class _WidgetMatieresState extends State<WidgetMatieres> {
               AnimatedContainer(
                 duration: Duration(milliseconds: 200),
                 curve: Curves.easeInOut,
-                width: isHovered ? 240.0 : 230.0,
+                width: isHovered ? 560.0 : 550.0,
                 height: isHovered ? 220.0 : 210.0,
                 decoration: BoxDecoration(
                   color: AppColors().bleuClair,

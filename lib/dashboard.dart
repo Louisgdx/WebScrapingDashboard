@@ -52,7 +52,7 @@ class Dashboard extends StatelessWidget {
             },
           ), // Appel de la classe WidgetMatieres pour afficher les matières
           WidgetMoyenneGen(), // Appel de la classe WidgetMoyenneGen pour afficher la moyenne générale
-          WidgetAutre(), // Appel de la classe WidgetAutre pour afficher les autres widgets
+           // Appel de la classe WidgetAutre pour afficher les autres widgets
           WidgetEdt(), // Appel de la classe WidgetEdt pour afficher l'emploi du temps
           MargeGauche(), // Appel de la classe MargeGauche pour afficher la marge gauche
           WidgetAbs(),

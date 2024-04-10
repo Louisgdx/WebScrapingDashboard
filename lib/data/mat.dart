@@ -20,6 +20,23 @@ class Mat {
     return firstElements;
   }
 
+  static Future<List<String>> getFirstElements2() async {
+    String contenu = await rootBundle.loadString('assets/bdd/notes2.csv');
+    List<List<dynamic>> T = CsvToListConverter(eol: '\n', fieldDelimiter: ';').convert(contenu);
+    List<String> firstElements = [];
+
+    for (List<dynamic> row in T) {
+      if (row.isNotEmpty) {
+        firstElements.add(row.first.toString().trim());
+      }
+    }
+
+    return firstElements;
+  }
+
+
+
+
   static Future<List<List<String>>> getNotes() async {
     String fileContent = await rootBundle.loadString('assets/bdd/notes2.csv');
     List<List<dynamic>> csvTable = CsvToListConverter().convert(fileContent);
@@ -34,7 +51,18 @@ class Mat {
     return notes;
   }
 
+  static Future<List<List<double>>> getNotes2() async {
+    String content = await rootBundle.loadString('assets/bdd/notes2.csv');
+    List<List<dynamic>> Tab = CsvToListConverter(eol: '\n', fieldDelimiter: ';').convert(content);
+    List<List<double>> notes = [];
 
+    for (List<dynamic> row in Tab) {
+      List<double> formattedRow = row.skip(1).map((cell) => double.tryParse(cell.toString().trim()) ?? 0).toList();
+      notes.add(formattedRow);
+    }
+
+    return notes;
+  }
 
 
 
