@@ -19,7 +19,7 @@ class MargeGauche extends StatelessWidget {
           top: MediaQuery.of(context).size.height / 2 - 200, // Position verticale centrée
           child: Container(
             width: 60, // Ajustement de la largeur du conteneur
-            height: 330,
+            height: 270,
             decoration: BoxDecoration(
               color: AppColors().bleuClair,
               borderRadius: BorderRadius.only(
@@ -64,16 +64,7 @@ class MargeGauche extends StatelessWidget {
                     },
                   ),
                 ),
-                // Icône flèche retour en arrière
-                Tooltip(
-                  message: 'Consulté Récemment',
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () {
-                      // Action lors de l'appui sur l'icône de retour
-                    },
-                  ),
-                ),
+
                 // Icône point d'interrogation
                 Tooltip(
                   message: 'Aide',
